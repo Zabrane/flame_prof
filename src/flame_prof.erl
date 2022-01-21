@@ -380,7 +380,7 @@ sampler_loop(Parent, {trace,Frm,send,_,To}, #st_r{}=S0, Opts)
             false ->
                 remote
          end,
-    S2 = case S1=:=local andalso S1#st_r.auto_ps of
+    S2 = case S0#st_r.auto_ps of
             #{Frm:=AutoGrp} ->
                 % Add local recipient process to map of processes to auto sample
                 % if sending process is being auto sampled.
@@ -391,7 +391,7 @@ sampler_loop(Parent, {trace,Frm,send,_,To}, #st_r{}=S0, Opts)
                         S0
                 end;
             #{} ->
-                S1;
+                S0;
             false ->
                 S0
          end,
